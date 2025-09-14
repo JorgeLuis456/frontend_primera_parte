@@ -15,17 +15,43 @@
             alt="Churrasquería" 
             style="width: 100%; border-radius: 10px; margin-bottom: 20px;"
         />
-        <form>
-            <input type="email" placeholder="Email" required 
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="Email" required 
                    style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ccc;">
-            <input type="password" placeholder="Password" required 
+            <input type="password" id="password" placeholder="Password" required 
                    style="width: 100%; padding: 10px; margin-bottom: 15px; border-radius: 8px; border: 1px solid #ccc;">
             <button type="submit" 
                     style="width: 100%; padding: 12px; border-radius: 8px; border: none; background-color: #e74c3c; color: #fff; font-size: 1em; cursor: pointer;">
                 Ingresar
             </button>
         </form>
+        <p id="error" style="color:red; margin-top:15px;"></p>
     </div>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const error = document.getElementById('error');
+
+        const adminUser = {
+            email: "admin@churrasqueria.com",
+            password: "1234",
+            rol: "admin"
+        };
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if(email === adminUser.email && password === adminUser.password) {
+                sessionStorage.setItem('rol', adminUser.rol);
+                window.location.href = 'bandejaUsuarios.html';
+            } else {
+                error.textContent = "Email o contraseña incorrectos";
+            }
+        });
+    </script>
 
 </body>
 </html>
