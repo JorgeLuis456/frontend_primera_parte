@@ -36,5 +36,13 @@
         </table>
     </div>
 
+    <script>
+        const rol = sessionStorage.getItem('rol');
+        if(!rol || rol !== "admin") {
+            alert("No tienes acceso a esta página");
+            window.location.href = 'login.html';
+        }
+    </script>
+
 </body>
 </html>
